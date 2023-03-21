@@ -10,15 +10,11 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import com.api.fichagincana.dtos.EquipeDTO;
-import com.api.fichagincana.dtos.ParticipanteDTO;
 import com.api.fichagincana.models.EquipeModel;
-import com.api.fichagincana.models.ParticipanteModel;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,7 +50,7 @@ public class EquipeController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Object>saveEquipe(@RequestBody @Valid EquipeDTO equipeDTO,UriComponentsBuilder uriBuilder){
+	public ResponseEntity<Object>saveEquipe(@RequestBody @Valid EquipeDTO equipeDTO,UriComponentsBuilder uriBuilder) throws Exception{
 		var equipeModel = new EquipeModel();
 		BeanUtils.copyProperties(equipeDTO, equipeModel);
 		equipeService.save(equipeModel);
@@ -65,7 +61,7 @@ public class EquipeController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object>updateEquipe(@PathVariable(value="id") Long id, @RequestBody @Valid EquipeDTO equipeDTO){
+	public ResponseEntity<Object>updateEquipe(@PathVariable(value="id") Long id, @RequestBody @Valid EquipeDTO equipeDTO) throws Exception{
 		Optional<EquipeModel> equipeModelOptional = equipeService.getById(id);
 		if (!equipeModelOptional.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Equipe não encontrada");

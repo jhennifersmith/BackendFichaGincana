@@ -3,8 +3,6 @@ package com.api.fichagincana.dtos;
 import java.util.List;
 
 
-import javax.validation.constraints.NotBlank;
-
 import com.api.fichagincana.enums.CursoEnum;
 import com.api.fichagincana.models.ParticipanteModel;
 
@@ -19,7 +17,7 @@ import lombok.Setter;
 @Setter
 public class EquipeDTO {
 
-	@NotBlank
+//	@NotBlank
 	private String nome;
 
 	private CursoEnum curso;
